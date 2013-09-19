@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>CKEditor in Drupal 8: site builders &amp; developers</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="Wim Leers">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="src/reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="src/fullscreen-img/fullscreen-img.css">
+		<link rel="stylesheet" href="src/reveal/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="src/reveal/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="src/reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="src/reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>CKEditor</h1>
+					<h2>for site builders/developers</h2>
+					<p>
+						Q&amp;A with the CKEditor developers!
+					</p>
+					<p><small><a href="https://twitter.com/ckeditor">@ckeditor</a> + <a href="https://twitter.com/wimleers">@wimleers</a></small></p>
+				</section>
+
+				<section>
+					<h1>Agenda</h1>
+					<h2>1. Demo &nbsp;</h2>
+					<ol>
+						<li>Drupal 7 vs. Drupal 8</li>
+						<li>Configuring CKEditor</li>
+						<li>ACF <small>(Advanced Content Filter)</small></li>
+						<li>Image uploading/alignment/captions …</li>
+						<li style="color: #ff2c2d">Structured content: CKE captioned image widget</li>
+						<li>Site-specific styles</li>
+						<li>The <span style="color: #ff2c2d">technical</span> possibilities</li>
+					</ol>
+					<h2>2. Q&amp;A</h2>
+				</section>
+
+				<section><h1>1. Demo</h1></section>
+
+				<section>
+					<section>
+						<h2>Drupal 7 vs. Drupal 8</h2>
+						<ol>
+							<li class="fragment">
+								<p>Two choices:</p>
+								<ul>
+									<li>WYSIWYG module <small>(manually download editor)</small></li>
+									<li>CKEditor module <small>(editor-specific module)</small></li>
+								</ul>
+							</li>
+							<li class="fragment">
+								<p>Poor configuration UX in both cases</p>
+							</li>
+						</ol>
+					</section>
+					<!-- WYSIWYG module -->
+					<section fullscreen-img="images/1-7_vs_8/wysiwyg-7.x-2.2.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/wysiwyg-7.x-2.2-ckeditor-4.2.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/wysiwyg-7.x-2.x-dev.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/wysiwyg-configuration-1.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/wysiwyg-configuration-2.png" fullscreen-size="contain"></section>
+					<!-- CKEditor module -->
+					<section fullscreen-img="images/1-7_vs_8/ckeditor-7.13.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/ckeditor-7.13-ckeditor-4.2.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/ckeditor-configuration-1.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/ckeditor-configuration-2.png" fullscreen-size="contain"></section>
+					<section fullscreen-img="images/1-7_vs_8/ckeditor-configuration-3.png" fullscreen-size="contain"></section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Configuring CKEditor</h2>
+						<ul>
+							<li class="fragment">Text Editor vs. WYSIWYG module</li>
+							<li class="fragment">Great UX</li>
+							<li class="fragment">Filter settings <em>automatically</em> updated!</li>
+						</ul>
+					</section>
+					<section>
+						<video width="958" height="586" src="videos/configuration.mp4" type="video/mp4" controls>
+						</video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Advanced Content Filter (ACF)</h2>
+						<ul>
+							<li class="fragment">No more crappy HTML!</li>
+							<li class="fragment">Manually, CKEditor buttons, paste: no matter</li>
+							<li class="fragment">CKE plugin metadata: required &amp; allowed HTML</li>
+						</ul>
+					</section>
+					<section>
+						<video width="960" height="588" src="videos/acf.mp4" type="video/mp4" controls></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Image uploading/alignment/captions</h2>
+						<ul>
+							<li class="fragment">Uploading integrated, enables image browsing in contrib</li>
+							<li class="fragment">Image captions</li>
+						</ul>
+					</section>
+					<section>
+						<video width="958" height="586" src="videos/image-handling.mp4" type="video/mp4" controls></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Structured content: CKE captioned image widget</h2>
+						<ul>
+							<li class="fragment">Caption filter: <code>data-caption</code> &amp; <code>data-align</code></li>
+							<li class="fragment">CKEditor Widget transforms this on-the-fly</li>
+						</ul>
+					</section>
+					<section>
+						<video width="958" height="586" src="videos/widget.mp4" type="video/mp4" controls></video>
+					</section>
+					<section>
+						<p>WordPress 3.6.1</p>
+						<pre><code class="html">[caption id="" align="aligncenter" width="55"]<img class="size-full wp-image " id="i-10" alt="Description." src="http://foobar.com/2013/09/dark.png?w=55" width="55" height="50" />This is my caption![/caption]
+</code></pre>
+						<p>Drupal 8</p>
+<pre><code class="html"><img alt="Description." data-align="center" data-caption="This is my caption!" data-editor-file-uuid="5e36c57e-0780-4914-b300-0be49aa7cfa6" height="59" src="http://foobar.com/sites/default/files/inline-images/dark.png" width="65" />
+</code></pre>
+						<img style="margin-top: 2em" class="fragment" src="images/5-widget/eaton.png" />
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Site-specific styles</h2>
+						<ul>
+							<li class="fragment">Anything you want</li>
+							<li class="fragment">CSS in theme, only <code>class</code> attributes in HTML</li>
+						</ul>
+					</section>
+					<section fullscreen-img="images/6-styles/styles.png" fullscreen-size="contain"></section>
+				</section>
+
+				<section>
+					<h2>The <span style="color: #ff2c2d">technical</span> possibilities</h2>
+					<ul>
+						<li>Add more plugins:
+							<ol>
+								<li class="fragment"><a href="http://ckeditor.com/addons/plugins/all">ckeditor.com/addons/plugins</a>, or</li>
+								<li class="fragment">Custom plugins: <code style="font-size: 90%">Drupal.ckeditor.openDialog()</code></li>
+								<li class="fragment">Write Drupal plugin: <code>CKEditorPluginInterface</code></li>
+							</ol>
+						</li>
+						<li class="fragment">Amazing possibilities with CKE Widgets! e.g.: <a href="http://ckeditor.com/ckeditor_4.3_beta/samples/plugins/mathjax/mathjax.html">MathJax</a></li>
+					</ul>
+					<div class="fragment">
+						<hr>
+						<p>Show <a href="http://drupalcode.org/project/drupal.git/blob/refs/heads/8.x:/core/modules/ckeditor/lib/Drupal/ckeditor/Plugin/CKEditorPlugin/DrupalImage.php"><code>DrupalImage</code></a> &amp; <a href="http://drupalcode.org/project/drupal.git/blob/refs/heads/8.x:/core/modules/ckeditor/lib/Drupal/ckeditor/Plugin/CKEditorPlugin/DrupalImageCaption.php"><code>DrupalImageCaption</code></a>!</p>
+					</div>
+				</section>
+
+
+				<section>
+					<h1>2. Q&amp;A</h1>
+					<p><a href="http://wimleers.com/talk/ckeditor-drupal8-qa">wimleers.com/talk/ckeditor-drupal8-qa</a>
+						<br>→ slides on GitHub, feel free to reuse in your blogs &amp; talks!
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="src/reveal/lib/js/head.min.js"></script>
+		<script src="src/reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'src/fullscreen-img/fullscreen-img.js'},
+					{ src: 'src/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'src/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'src/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'src/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'src/reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'src/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
